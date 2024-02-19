@@ -4,9 +4,9 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=yudhveer10&label=Profile%20views&color=0e75b6&style=flat" alt="yudhveer10" /> </p>
 
-- 🔭 I’m currently working on **Pandas**
+- 🔭 I’m currently working on **Html,CSS**
 
-- 🌱 I’m currently learning **Frontend , DSA**
+- 🌱 I’m currently learning **Web Development , DSA**
 
 - 📫 How to reach me **yudhveerp10@gmail.com**
 
