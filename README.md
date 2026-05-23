@@ -53,7 +53,7 @@ missions = [
 
 </td>
 <td width="45%" align="center" valign="top">
-  <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="320px" alt="Coding GIF" style="border-radius: 12px; border: 2px solid #00ff88;" />
+  <img src="https://media.giphy.com/media/ZVik7pIojeZ0g/giphy.gif" width="320px" alt="Coding GIF" style="border-radius: 12px; border: 2px solid #00ff88;" />
 </td>
 </tr>
 </table>
@@ -71,40 +71,6 @@ missions = [
   </picture>
 
 </div>
-
-> **⚙️ One-time setup:** Create `.github/workflows/snake.yml` in your profile repo with the content below, then push. The snake will generate automatically every 12 hours.
->
-> ```yaml
-> name: Generate Snake Animation
-> 
-> on:
->   schedule:
->     - cron: "0 */12 * * *"
->   workflow_dispatch:
->   push:
->     branches:
->       - main
-> 
-> jobs:
->   generate:
->     permissions:
->       contents: write
->     runs-on: ubuntu-latest
->     steps:
->       - uses: actions/checkout@v3
->       - uses: Platane/snk/svg-only@v3
->         with:
->           github_user_name: yudhveer10
->           outputs: |
->             dist/github-contribution-grid-snake.svg
->             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
->       - uses: crazy-max/ghaction-github-pages@v3.1.0
->         with:
->           target_branch: output
->           build_dir: dist
->         env:
->           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-> ```
 
 ---
 
