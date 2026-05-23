@@ -65,13 +65,46 @@ missions = [
   <h3>🐍 My Contribution Snake</h3>
   
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yudhveer10/yudhveer10/blob/output/github-contribution-grid-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/yudhveer10/yudhveer10/blob/output/github-contribution-grid-snake.svg" />
-    <img alt="github contribution grid snake animation" src="https://github.com/yudhveer10/yudhveer10/blob/output/github-contribution-grid-snake.svg" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake.svg" />
+    <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake-dark.svg" />
   </picture>
-  
-  > ⚠️ **Setup:** Add a GitHub Action to generate the snake animation — [see instructions here](https://github.com/Platane/snk)
+
 </div>
+
+> **⚙️ One-time setup:** Create `.github/workflows/snake.yml` in your profile repo with the content below, then push. The snake will generate automatically every 12 hours.
+>
+> ```yaml
+> name: Generate Snake Animation
+> 
+> on:
+>   schedule:
+>     - cron: "0 */12 * * *"
+>   workflow_dispatch:
+>   push:
+>     branches:
+>       - main
+> 
+> jobs:
+>   generate:
+>     permissions:
+>       contents: write
+>     runs-on: ubuntu-latest
+>     steps:
+>       - uses: actions/checkout@v3
+>       - uses: Platane/snk/svg-only@v3
+>         with:
+>           github_user_name: yudhveer10
+>           outputs: |
+>             dist/github-contribution-grid-snake.svg
+>             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+>       - uses: crazy-max/ghaction-github-pages@v3.1.0
+>         with:
+>           target_branch: output
+>           build_dir: dist
+>         env:
+>           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+> ```
 
 ---
 
