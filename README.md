@@ -23,7 +23,7 @@
 
 ---
 
-<!-- About Section with Gaming GIF -->
+<!-- About Section with Computer GIF -->
 <table>
 <tr>
 <td width="55%" valign="top">
@@ -53,7 +53,7 @@ missions = [
 
 </td>
 <td width="45%" align="center" valign="top">
-  <img src="https://media.giphy.com/media/ZVik7pIojeZ0g/giphy.gif" width="320px" alt="Coding GIF" style="border-radius: 12px; border: 2px solid #00ff88;" />
+  <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="320px" alt="Coding GIF" style="border-radius: 12px; border: 2px solid #00ff88;" />
 </td>
 </tr>
 </table>
@@ -69,7 +69,6 @@ missions = [
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake.svg" />
     <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake-dark.svg" />
   </picture>
-
 </div>
 
 ---
@@ -115,11 +114,8 @@ missions = [
 ### 📊 `> battle_stats`
 
 <div align="center">
-
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=yudhveer10&show_icons=true&theme=chartreuse-dark&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=00ff88&icon_color=00ff88&text_color=ffffff&cache_seconds=1800" />
-&nbsp;
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=yudhveer10&layout=compact&langs_count=8&theme=chartreuse-dark&hide_border=true&bg_color=0d1117&title_color=00ff88&text_color=ffffff&cache_seconds=1800" />
-
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=yudhveer10&show_icons=true&theme=chartreuse-dark&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=00ff88&icon_color=00ff88&text_color=ffffff" />
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=yudhveer10&layout=compact&langs_count=8&theme=chartreuse-dark&hide_border=true&bg_color=0d1117&title_color=00ff88&text_color=ffffff" />
 </div>
 
 <div align="center">
