@@ -1,1 +1,202 @@
+<svg width="900" height="420" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
 
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+
+    <linearGradient id="green" x1="0" x2="1">
+      <stop offset="0%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#00d26a"/>
+    </linearGradient>
+
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#00ff88" flood-opacity="0.25"/>
+    </filter>
+
+  </defs>
+
+  <rect width="900" height="420" rx="18" fill="url(#bg)" stroke="#00ff88" stroke-width="2"/>
+
+  <rect width="900" height="42" rx="18" fill="#111827"/>
+
+  <circle cx="28" cy="21" r="7" fill="#ff5f57"/>
+  <circle cx="52" cy="21" r="7" fill="#ffbd2f"/>
+  <circle cx="76" cy="21" r="7" fill="#28ca42"/>
+
+  <text x="450" y="27"
+        font-size="16"
+        fill="#cccccc"
+        text-anchor="middle"
+        font-family="Consolas, monospace">
+terminal — yudhveer10
+  </text>
+
+  <text x="40"
+        y="75"
+        fill="#00ff88"
+        font-size="18"
+        font-family="Consolas, monospace">
+
+$ whoami
+
+  </text>
+
+  <text x="40"
+        y="108"
+        fill="#ffffff"
+        font-size="15"
+        font-family="Consolas, monospace">
+
+Name        : Yudhveer Singh Panwar
+
+  </text>
+
+  <text x="40" y="136" fill="#ffffff" font-size="15" font-family="Consolas, monospace">
+Role        : AI Engineer
+  </text>
+
+  <text x="40" y="164" fill="#ffffff" font-size="15" font-family="Consolas, monospace">
+Company     : TechAIVV
+  </text>
+
+  <text x="40" y="192" fill="#ffffff" font-size="15" font-family="Consolas, monospace">
+Location    : Delhi, India 🇮🇳
+  </text>
+
+  <text x="40"
+        y="235"
+        fill="#00ff88"
+        font-size="18"
+        font-family="Consolas, monospace">
+
+$ tech_stack
+
+  </text>
+
+  <text x="40"
+        y="268"
+        fill="#ffffff"
+        font-size="15"
+        font-family="Consolas, monospace">
+
+Languages : Python • C++ • TypeScript
+
+  </text>
+
+  <text x="40" y="296" fill="#ffffff" font-size="15" font-family="Consolas, monospace">
+Backend   : FastAPI • Node.js
+  </text>
+
+  <text x="40" y="324" fill="#ffffff" font-size="15" font-family="Consolas, monospace">
+Frontend  : Next.js • React
+  </text>
+
+  <text x="40" y="352" fill="#ffffff" font-size="15" font-family="Consolas, monospace">
+AI        : LangGraph • RAG • Gemini
+  </text>
+
+  <text x="520"
+        y="75"
+        fill="#00ff88"
+        font-size="18"
+        font-family="Consolas, monospace">
+
+$ currently_building
+
+  </text>
+
+  <text x="520"
+        y="110"
+        fill="#ffffff"
+        font-size="15"
+        font-family="Consolas, monospace">
+
+✓ HireAIVV
+
+  </text>
+
+  <text x="520"
+        y="138"
+        fill="#ffffff"
+        font-size="15"
+        font-family="Consolas, monospace">
+
+✓ AI Agents
+
+  </text>
+
+  <text x="520"
+        y="166"
+        fill="#ffffff"
+        font-size="15"
+        font-family="Consolas, monospace">
+
+✓ LangGraph Workflows
+
+  </text>
+
+  <text x="520"
+        y="194"
+        fill="#ffffff"
+        font-size="15"
+        font-family="Consolas, monospace">
+
+✓ FastAPI APIs
+
+  </text>
+
+  <text x="520"
+        y="222"
+        fill="#ffffff"
+        font-size="15"
+        font-family="Consolas, monospace">
+
+✓ Next.js Dashboards
+
+  </text>
+
+  <rect
+        x="520"
+        y="255"
+        width="320"
+        height="110"
+        rx="12"
+        fill="#101820"
+        stroke="#00ff88"/>
+
+  <text
+        x="540"
+        y="285"
+        fill="#00ff88"
+        font-size="16"
+        font-family="Consolas, monospace">
+
+System Status
+
+  </text>
+
+  <text
+        x="540"
+        y="315"
+        fill="#ffffff"
+        font-size="15"
+        font-family="Consolas, monospace">
+
+████████████████████ 100%
+
+  </text>
+
+  <text
+        x="540"
+        y="345"
+        fill="#00ff88"
+        font-size="15"
+        font-family="Consolas, monospace">
+
+ONLINE ● READY TO BUILD
+
+  </text>
+
+</svg>
