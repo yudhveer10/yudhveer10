@@ -22,10 +22,10 @@ SVG_PATH = ASSETS / "terminal.svg"
 
 USERNAME = "yudhveer10"
 
-ASCII_WIDTH = 58
+ASCII_WIDTH = 42
 ASCII_RAMP = " .:-=+*#%@"
-SVG_WIDTH = 1280
-SVG_HEIGHT = 720
+SVG_WIDTH = 1100
+SVG_HEIGHT = 500
 
 
 @dataclass(frozen=True)
@@ -247,38 +247,38 @@ def wrapped_row(label: str, value: str, width: int = 46) -> list[str]:
     return lines
 
 
+def pill(label: str, x: int, y: int, width: int) -> str:
+    return f'''
+      <rect x="{x}" y="{y}" width="{width}" height="34" rx="8" fill="#111a20" stroke="#23313b"/>
+      <text x="{x + 16}" y="{y + 22}" class="mono tag">{esc(label)}</text>
+    '''
+
+
+def stat_value(value: str) -> str:
+    return "--" if value == "dynamic" else value
+
+
 def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str]) -> str:
     ascii_lines = ascii_art.splitlines()
     ascii_spans = []
-    for index, line in enumerate(ascii_lines[:48]):
-        y = 105 + index * 11
-        ascii_spans.append(f'<tspan x="52" y="{y}">{esc(line)}</tspan>')
+    for index, line in enumerate(ascii_lines[:32]):
+        y = 118 + index * 10
+        ascii_spans.append(f'<tspan x="58" y="{y}">{esc(line)}</tspan>')
 
-    whoami = []
-    whoami.extend(wrapped_row("name", profile.name))
-    whoami.extend(wrapped_row("role", profile.role))
-    whoami.extend(wrapped_row("company", profile.company))
-    whoami.extend(wrapped_row("location", profile.location))
-    whoami.extend(wrapped_row("email", profile.email))
-    whoami.extend(wrapped_row("linkedin", profile.linkedin))
-    whoami.extend(wrapped_row("leetcode", profile.leetcode))
-
-    stack = []
-    stack.extend(wrap_values("languages", profile.languages))
-    stack.extend(wrap_values("frontend", profile.frontend))
-    stack.extend(wrap_values("backend", profile.backend))
-    stack.extend(wrap_values("database", profile.databases))
-    stack.extend(wrap_values("ai", profile.ai_stack))
-
-    projects = [f"{index + 1}. {project}" for index, project in enumerate(profile.projects)]
-    github = [
-        f"username  : @{profile.username}",
-        f"repos     : {stats['repos']}",
-        f"stars     : {stats['stars']}",
-        f"followers : {stats['followers']}",
-        f"following : {stats['following']}",
-        f"top lang  : {stats['top_language']}",
+    stack_lines = [
+        "python  c++  typescript  sql",
+        "next.js  react  tailwind  fastapi",
+        "langgraph  openai  gemini  faiss",
     ]
+
+    project_lines = [
+        "HireAIVV",
+        "AI Agents",
+        "LangGraph Workflows",
+        "AI Content Repurposing",
+    ]
+
+    top_language = stats["top_language"] if stats["top_language"] != "AI / Full Stack" else "AI"
 
     return f'''<svg width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">{esc(profile.name)} terminal profile</title>
@@ -298,43 +298,55 @@ def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str]) -> str:
     </filter>
     <style>
       .mono {{ font-family: "SFMono-Regular", "Cascadia Code", "Consolas", "Liberation Mono", monospace; }}
-      .body {{ fill: #d7fbe8; font-size: 14.2px; }}
+      .title {{ fill: #f0f6fc; font-size: 31px; font-weight: 800; }}
+      .subtitle {{ fill: #8b949e; font-size: 17px; }}
+      .body {{ fill: #d7fbe8; font-size: 15px; }}
       .muted {{ fill: #7d8590; }}
-      .cmd {{ fill: #00ff88; font-size: 16px; font-weight: 700; }}
-      .ascii {{ fill: #c9ffe0; font-size: 10.2px; letter-spacing: 0; filter: url(#softGlow); }}
-      .prompt {{ fill: #00ff88; font-size: 15px; font-weight: 700; }}
+      .cmd {{ fill: #00ff88; font-size: 17px; font-weight: 800; }}
+      .tag {{ fill: #d7fbe8; font-size: 14px; font-weight: 700; }}
+      .ascii {{ fill: #b7ffd0; font-size: 9.4px; letter-spacing: 0; filter: url(#softGlow); }}
+      .prompt {{ fill: #00ff88; font-size: 15px; font-weight: 800; }}
       .cursor {{ fill: #00ff88; }}
     </style>
   </defs>
 
-  <rect x="16" y="16" width="1248" height="688" rx="24" fill="#030507"/>
-  <rect x="26" y="26" width="1228" height="668" rx="18" fill="url(#terminalBg)" stroke="#263241" stroke-width="2"/>
-  <rect x="26" y="26" width="1228" height="52" rx="18" fill="url(#titleBar)"/>
-  <path d="M26 58H1254V78H26V58Z" fill="#111820"/>
+  <rect x="14" y="14" width="1072" height="472" rx="24" fill="#030507"/>
+  <rect x="24" y="24" width="1052" height="452" rx="18" fill="url(#terminalBg)" stroke="#263241" stroke-width="2"/>
+  <rect x="24" y="24" width="1052" height="52" rx="18" fill="url(#titleBar)"/>
+  <path d="M24 58H1076V76H24V58Z" fill="#111820"/>
 
-  <circle cx="58" cy="52" r="8" fill="#ff5f57"/>
-  <circle cx="84" cy="52" r="8" fill="#ffbd2e"/>
-  <circle cx="110" cy="52" r="8" fill="#28c840"/>
-  <text x="640" y="58" text-anchor="middle" class="mono muted" font-size="14">yudhveer10/profile-terminal - generated from assets/YudhveerP.jpg</text>
+  <circle cx="56" cy="51" r="8" fill="#ff5f57"/>
+  <circle cx="82" cy="51" r="8" fill="#ffbd2e"/>
+  <circle cx="108" cy="51" r="8" fill="#28c840"/>
+  <text x="550" y="57" text-anchor="middle" class="mono muted" font-size="14">yudhveer10 / README.md</text>
 
-  <rect x="46" y="96" width="472" height="554" rx="12" fill="#07100c" stroke="#1d2b24"/>
+  <rect x="46" y="96" width="360" height="344" rx="12" fill="#07100c" stroke="#1d2b24"/>
   <text class="mono ascii">
     {''.join(ascii_spans)}
   </text>
-  <text x="52" y="674" class="mono muted" font-size="13">ascii portrait: assets/ascii.txt</text>
 
-  <line x1="552" y1="102" x2="552" y2="648" stroke="#243244"/>
-  {section("whoami", whoami, 590, 118)}
-  {section("tech_stack", stack, 590, 310)}
-  {section("github_stats", github, 590, 498)}
-  {section("projects", projects, 850, 498)}
+  <text x="448" y="126" class="mono cmd">$ whoami</text>
+  <text x="448" y="166" class="mono title">{esc(profile.name)}</text>
+  <text x="450" y="195" class="mono subtitle">{esc(profile.role)} at {esc(profile.company)} | {esc(profile.location)}</text>
+  <text x="450" y="228" class="mono body">contact : {esc(profile.email)}</text>
 
-  <text x="590" y="652" class="mono prompt">yudhveer@github</text>
-  <text x="720" y="652" class="mono body">:</text>
-  <text x="732" y="652" class="mono" fill="#58a6ff" font-size="15">~/profile</text>
-  <text x="812" y="652" class="mono prompt">$</text>
-  <text x="834" y="652" class="mono body">building AI systems</text>
-  <rect x="1048" y="638" width="10" height="20" class="cursor">
+  <text x="448" y="330" class="mono cmd">$ stack</text>
+  {tspan_lines(stack_lines, 450, 364, 22)}
+
+  <text x="754" y="330" class="mono cmd">$ projects</text>
+  {tspan_lines(project_lines, 756, 364, 22)}
+
+  {pill(f"repos {stat_value(stats['repos'])}", 448, 258, 104)}
+  {pill(f"stars {stat_value(stats['stars'])}", 564, 258, 108)}
+  {pill(f"followers {stat_value(stats['followers'])}", 684, 258, 136)}
+  {pill(f"top {top_language}", 832, 258, 104)}
+
+  <text x="448" y="450" class="mono prompt">yudhveer@github</text>
+  <text x="578" y="450" class="mono body">:</text>
+  <text x="590" y="450" class="mono" fill="#58a6ff" font-size="15">~/ai-lab</text>
+  <text x="666" y="450" class="mono prompt">$</text>
+  <text x="688" y="450" class="mono body">building useful AI products</text>
+  <rect x="928" y="436" width="10" height="20" class="cursor">
     <animate attributeName="opacity" values="1;1;0;0;1" dur="1.2s" repeatCount="indefinite"/>
   </rect>
 </svg>
