@@ -20,7 +20,7 @@ python scripts/generate_terminal.py
 4. Apply histogram equalization, contrast enhancement, sharpening, noise reduction, and edge emphasis
 5. Generate `assets/ascii.txt`
 6. Build `assets/terminal.svg`
-7. Update `README.md` so it displays the generated terminal
+7. Update `README.md` with the full premium profile layout and generated terminal centerpiece
 
 ## Profile
 
