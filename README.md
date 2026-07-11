@@ -69,8 +69,7 @@ I build AI-first products with a practical engineering mindset: fast backends, c
 
 <div align="center">
 
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=yudhveer10&show_icons=true&theme=chartreuse-dark&hide_border=true&bg_color=0d1117&title_color=00ff88&icon_color=00ff88" alt="GitHub stats">
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=yudhveer10&layout=compact&theme=chartreuse-dark&hide_border=true&bg_color=0d1117&title_color=00ff88" alt="Top languages">
+<img src="./assets/github-dashboard.svg" width="100%" alt="Generated GitHub analytics dashboard">
 
 <br><br>
 
@@ -81,20 +80,23 @@ I build AI-first products with a practical engineering mindset: fast backends, c
 ## Contribution Graph
 
 <div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=yudhveer10&theme=github-compact&hide_border=true&bg_color=0d1117&color=00ff88&line=00ff88&point=ffffff" alt="Contribution graph">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=yudhveer10&theme=github-compact&hide_border=true&bg_color=0d1117&color=00ff88&line=00ff88&point=ffffff" width="100%" alt="Contribution graph">
 </div>
 
 ## Contribution Snake
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake-dark.svg" alt="Contribution snake">
+  <img src="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake-dark.svg" width="100%" alt="Contribution snake">
 </div>
 
-## Trophies
+## Highlights
 
-<div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=yudhveer10&theme=matrix&no-frame=true&margin-w=8&column=6" alt="GitHub trophies">
-</div>
+| Area | Signal |
+| --- | --- |
+| AI Engineering | Agentic workflows, LLM apps, automation systems |
+| Backend | FastAPI, Node.js, Express, APIs and orchestration |
+| Frontend | Next.js, React, Tailwind CSS |
+| Data | PostgreSQL, MongoDB, MySQL, FAISS |
 
 ## Connect
 

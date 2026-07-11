@@ -37,6 +37,7 @@ python scripts/generate_terminal.py
 
 - `assets/ascii.txt`
 - `assets/terminal.svg`
+- `assets/github-dashboard.svg`
 - `README.md`
 
 Generated on demand by `scripts/generate_terminal.py`.
