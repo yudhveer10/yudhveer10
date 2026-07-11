@@ -1,164 +1,231 @@
-<!-- Gaming Header Banner -->
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=venom&height=200&text=Yudhveer%20Singh%20Panwar&fontSize=42&color=0:0d1117,100:1a1a2e&fontColor=00ff88&stroke=00ff88&strokeWidth=2&animation=fadeIn" width="100%" />
-</div>
 
-<div align="center">
-  
-  <!-- Typing animation -->
-  [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=00FF88&center=true&vCenter=true&width=600&lines=AI+%26+Data+Science+Student+%F0%9F%A4%96;Deep+Learning+Explorer+%F0%9F%A7%A0;Machine+Learning+Engineer+%F0%9F%9A%80;DSA+%7C+Python+%7C+C%2B%2B+Enthusiast+%F0%9F%92%BB;Building+the+Future+with+AI+%E2%9A%A1)](https://git.io/typing-svg)
+<img src="https://capsule-render.vercel.app/api?type=waving&height=250&color=0:0d1117,100:00ff88&text=Yudhveer%20Singh%20Panwar&fontSize=48&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=AI%20Engineer%20%7C%20Full%20Stack%20Developer%20%7C%20Building%20AI%20Products&descAlignY=58&descSize=18"/>
 
-</div>
+<br>
 
----
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=2500&pause=800&color=00FF88&center=true&vCenter=true&width=900&lines=AI+Engineer;Python+%7C+FastAPI+%7C+Next.js;Generative+AI+Developer;Building+LLMs+%26+AI+Products;Always+Learning+🚀)](https://git.io/typing-svg)
 
-<!-- Stats Row -->
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=yudhveer10&label=PROFILE+VIEWS&color=00ff88&style=for-the-badge&labelColor=0d1117" />
-  &nbsp;
-  <img src="https://img.shields.io/badge/FOCUS-Deep%20Learning-00ff88?style=for-the-badge&labelColor=0d1117" />
-  &nbsp;
-  <img src="https://img.shields.io/badge/STATUS-Learning%20%26%20Building-00ff88?style=for-the-badge&labelColor=0d1117" />
 </div>
 
 ---
 
-<!-- About Section with Computer GIF -->
+# 💻 whoami
+
 <table>
 <tr>
-<td width="55%" valign="top">
 
-### 🧑‍💻 `> whoami`
+<td width="55%">
 
-```yaml
-Name    : Yudhveer Singh Panwar
-Role    : AI & Data Science Student
-Located : India 🇮🇳
-Focus   : Deep Learning, Machine Learning
-Learning: DSA with C++, Data Science
-Fun Fact: I'm funny (at least I think so 😄)
-Email   : yudhveerp10@gmail.com
-```
+```bash
+> whoami
 
-### ⚔️ `> current_quest`
+Name        : Yudhveer Singh Panwar
 
-```python
-missions = [
-    "🔭 Mastering Deep Learning",
-    "🌱 Leveling up DSA with C++",
-    "📊 Exploring Data Science",
-    "🧠 Building ML Projects",
-]
+Role        : AI Engineer
+
+Location    : Delhi, India 🇮🇳
+
+Company     : TechAIVV
+
+Education   : B.Tech AI & Data Science
+
+Experience  : AI
+              Backend
+              Full Stack
+
+Currently Building
+
+• HireAIVV
+
+• AI Agents
+
+• LangGraph Workflows
+
+• RAG Applications
+
+Learning
+
+• System Design
+
+• LLM Engineering
+
+• Distributed Systems
+
 ```
 
 </td>
-<td width="45%" align="center" valign="top">
-  <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="320px" alt="Coding GIF" style="border-radius: 12px; border: 2px solid #00ff88;" />
+
+<td align="center">
+
+<img src="./assets/terminal.svg" width="320"/>
+
 </td>
+
 </tr>
 </table>
 
 ---
 
-<!-- Snake Game Animation -->
-<div align="center">
-  <h3>🐍 My Contribution Snake</h3>
-  
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake.svg" />
-    <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake-dark.svg" />
-  </picture>
-</div>
+# 🚀 Tech Stack
+
+### Languages
+
+<p>
+
+<img src="https://skillicons.dev/icons?i=python,cpp,java,js,ts"/>
+
+</p>
+
+### Frontend
+
+<p>
+
+<img src="https://skillicons.dev/icons?i=react,nextjs,tailwind,html,css"/>
+
+</p>
+
+### Backend
+
+<p>
+
+<img src="https://skillicons.dev/icons?i=fastapi,nodejs,express"/>
+
+</p>
+
+### Databases
+
+<p>
+
+<img src="https://skillicons.dev/icons?i=mongodb,mysql,postgresql"/>
+
+</p>
+
+### AI / ML
+
+<p>
+
+<img src="https://skillicons.dev/icons?i=tensorflow,pytorch"/>
+
+</p>
 
 ---
 
-<!-- Tech Stack -->
-### 🛡️ `> tech_arsenal`
+# ⚡ Current Projects
 
-**🤖 AI / ML Stack**
-
-![Python](https://img.shields.io/badge/Python-0d1117?style=for-the-badge&logo=python&logoColor=00ff88)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-0d1117?style=for-the-badge&logo=tensorflow&logoColor=FF6F00)
-![PyTorch](https://img.shields.io/badge/PyTorch-0d1117?style=for-the-badge&logo=pytorch&logoColor=EE4C2C)
-![Keras](https://img.shields.io/badge/Keras-0d1117?style=for-the-badge&logo=keras&logoColor=D00000)
-![Scikit-learn](https://img.shields.io/badge/Scikit--learn-0d1117?style=for-the-badge&logo=scikit-learn&logoColor=F7931E)
-
-**💻 Web & Backend**
-
-![HTML5](https://img.shields.io/badge/HTML5-0d1117?style=for-the-badge&logo=html5&logoColor=E34F26)
-![CSS3](https://img.shields.io/badge/CSS3-0d1117?style=for-the-badge&logo=css3&logoColor=1572B6)
-![JavaScript](https://img.shields.io/badge/JavaScript-0d1117?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-![React](https://img.shields.io/badge/React-0d1117?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Node.js](https://img.shields.io/badge/Node.js-0d1117?style=for-the-badge&logo=node.js&logoColor=339933)
-![Express](https://img.shields.io/badge/Express-0d1117?style=for-the-badge&logo=express&logoColor=ffffff)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-0d1117?style=for-the-badge&logo=bootstrap&logoColor=7952B3)
-
-**🗄️ Databases & Data Tools**
-
-![MongoDB](https://img.shields.io/badge/MongoDB-0d1117?style=for-the-badge&logo=mongodb&logoColor=47A248)
-![MySQL](https://img.shields.io/badge/MySQL-0d1117?style=for-the-badge&logo=mysql&logoColor=4479A1)
-![Power BI](https://img.shields.io/badge/Power_BI-0d1117?style=for-the-badge&logo=powerbi&logoColor=F2C811)
-![Hadoop](https://img.shields.io/badge/Hadoop-0d1117?style=for-the-badge&logo=apachehadoop&logoColor=66CCFF)
-
-**⚙️ Languages & Tools**
-
-![Java](https://img.shields.io/badge/Java-0d1117?style=for-the-badge&logo=openjdk&logoColor=ED8B00)
-![C](https://img.shields.io/badge/C-0d1117?style=for-the-badge&logo=c&logoColor=A8B9CC)
-![C++](https://img.shields.io/badge/C++-0d1117?style=for-the-badge&logo=cplusplus&logoColor=00599C)
-![Git](https://img.shields.io/badge/Git-0d1117?style=for-the-badge&logo=git&logoColor=F05032)
+| Project | Description |
+|----------|-------------|
+| 🤖 HireAIVV | AI-powered recruitment platform |
+| 🧠 AI Content Repurposing | LangGraph + FastAPI + RAG |
+| 📈 Panwar Alpha | TradingView indicator suite |
+| 💬 AI Chat Applications | Gemini & OpenAI integrations |
 
 ---
 
-<!-- GitHub Stats -->
-### 📊 `> battle_stats`
+# 📈 GitHub Analytics
 
 <div align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=yudhveer10&show_icons=true&theme=chartreuse-dark&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=00ff88&icon_color=00ff88&text_color=ffffff" />
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=yudhveer10&layout=compact&langs_count=8&theme=chartreuse-dark&hide_border=true&bg_color=0d1117&title_color=00ff88&text_color=ffffff" />
+
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=yudhveer10&show_icons=true&theme=chartreuse-dark&hide_border=true&bg_color=0d1117"/>
+
+<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=yudhveer10&layout=compact&theme=chartreuse-dark&hide_border=true&bg_color=0d1117"/>
+
 </div>
 
-<div align="center">
-  <img src="https://streak-stats.demolab.com/?user=yudhveer10&theme=dark&hide_border=true&background=0d1117&ring=00ff88&fire=00ff88&currStreakLabel=00ff88&sideLabels=ffffff&currStreakNum=ffffff&sideNums=ffffff&dates=888888" />
-</div>
-
----
-
-<!-- Activity Graph -->
-### 📈 `> activity_log`
-
-<div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=yudhveer10&bg_color=0d1117&color=00ff88&line=00ff88&point=ffffff&area=true&hide_border=true" width="100%" />
-</div>
-
----
-
-<!-- Trophies -->
-### 🏆 `> achievements`
-
-<div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=yudhveer10&theme=matrix&no-frame=true&no-bg=true&margin-w=8&column=7" width="100%" />
-</div>
-
----
-
-<!-- Connect Section -->
-### 🌐 `> connect --all`
+<br>
 
 <div align="center">
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0d1117?style=for-the-badge&logo=linkedin&logoColor=0A66C2)](https://linkedin.com/in/yudhveer-singh-panwar-504339265/)
-[![Instagram](https://img.shields.io/badge/Instagram-0d1117?style=for-the-badge&logo=instagram&logoColor=E4405F)](https://instagram.com/yudhveerpanwar_)
-[![LeetCode](https://img.shields.io/badge/LeetCode-0d1117?style=for-the-badge&logo=leetcode&logoColor=FFA116)](https://leetcode.com/u/yudhveerpanwar/)
-[![Email](https://img.shields.io/badge/Email-0d1117?style=for-the-badge&logo=gmail&logoColor=EA4335)](mailto:yudhveerp10@gmail.com)
+<img src="https://streak-stats.demolab.com?user=yudhveer10&theme=chartreuse-dark&hide_border=true"/>
 
 </div>
 
 ---
 
-<!-- Footer -->
+# 📊 Contribution Graph
+
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,100:00ff88&height=100&section=footer&animation=fadeIn" width="100%" />
-  
-  <sub>⚡ "Code is my weapon, AI is my superpower." ⚡</sub>
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=yudhveer10&theme=github-compact&hide_border=true&bg_color=0d1117&color=00ff88&line=00ff88&point=ffffff"/>
+
+</div>
+
+---
+
+# 🐍 Contribution Snake
+
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/yudhveer10/yudhveer10/output/github-contribution-grid-snake-dark.svg"/>
+
+</div>
+
+---
+
+# 🏆 GitHub Trophies
+
+<div align="center">
+
+<img src="https://github-profile-trophy.vercel.app/?username=yudhveer10&theme=matrix&no-frame=true&margin-w=8&column=4"/>
+
+</div>
+
+---
+
+# 🌐 Connect With Me
+
+<div align="center">
+
+<a href="https://linkedin.com/in/yudhveer-singh-panwar-504339265">
+<img src="https://skillicons.dev/icons?i=linkedin"/>
+</a>
+
+<a href="mailto:yudhveerp10@gmail.com">
+<img src="https://skillicons.dev/icons?i=gmail"/>
+</a>
+
+<a href="https://leetcode.com/u/yudhveerpanwar/">
+<img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black"/>
+</a>
+
+</div>
+
+---
+
+# ⚙️ Fun Terminal
+
+```python
+class Yudhveer:
+
+    def __init__(self):
+        self.role = "AI Engineer"
+        self.language = ["Python","TypeScript","C++"]
+        self.backend = ["FastAPI","Node.js"]
+        self.frontend = ["Next.js","React"]
+        self.database = ["MongoDB","PostgreSQL"]
+        self.ai = [
+            "LLMs",
+            "LangGraph",
+            "TensorFlow",
+            "RAG",
+            "FAISS"
+        ]
+
+    def build(self):
+        return "Building the future with AI 🚀"
+
+me = Yudhveer()
+
+print(me.build())
+
+```
+
+---
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&height=120&section=footer&color=0:0d1117,100:00ff88"/>
+
+### ⭐ If you like my work, consider giving a star to my repositories!
+
 </div>
