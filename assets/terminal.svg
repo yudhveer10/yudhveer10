@@ -22,7 +22,7 @@
       .muted { fill: #7d8590; }
       .cmd { fill: #00ff88; font-size: 17px; font-weight: 800; }
       .tag { fill: #d7fbe8; font-size: 14px; font-weight: 700; }
-      .ascii { fill: #b7ffd0; font-size: 9.4px; letter-spacing: 0; filter: url(#softGlow); }
+      .ascii { fill: #b7ffd0; font-size: 9px; letter-spacing: 0; filter: url(#softGlow); }
       .prompt { fill: #00ff88; font-size: 15px; font-weight: 800; }
       .cursor { fill: #00ff88; }
     </style>
@@ -40,7 +40,7 @@
 
   <rect x="46" y="96" width="360" height="344" rx="12" fill="#07100c" stroke="#1d2b24"/>
   <text class="mono ascii">
-    <tspan x="58" y="118">                ====-===</tspan><tspan x="58" y="128">              -+##*==++++++</tspan><tspan x="58" y="138">             --+%#*####*#%#+</tspan><tspan x="58" y="148">             ++=-::--==++#%*</tspan><tspan x="58" y="158">             *#=:::..:=+=-%%</tspan><tspan x="58" y="168">              =::++- -++=:=-</tspan><tspan x="58" y="178">              :: .::-=-:.:--</tspan><tspan x="58" y="188">               =:-=:-===-==</tspan><tspan x="58" y="198">                =+=-===*%*</tspan><tspan x="58" y="208">               =+-*#%@@%==#=</tspan><tspan x="58" y="218">          -++=+=+..-=+=--:**+++=</tspan><tspan x="58" y="228">      -==+++*+*+#*:.:::::=###+++===-</tspan><tspan x="58" y="238">    ==+++***#*#%%%%*- .-*%%##**+======</tspan><tspan x="58" y="248">   ==+###*#***+**+###*#%%%**+++**+##*+=</tspan><tspan x="58" y="258">   =+*##%@%#**+*****#%#**+++=++*%%%%#*+</tspan><tspan x="58" y="268">   =+*#%@@@%#******##*+**+*+*###@%%%##*+</tspan><tspan x="58" y="278">  ++***##%@%#****##%#*******#%@@%####%#*</tspan><tspan x="58" y="288">  =.:  :..#%#######%##**#####%@@#**+==*#</tspan><tspan x="58" y="298">          =@%%%@%%%%####%%@@%@@*      .=</tspan><tspan x="58" y="308">  .       +@@@%%@@@%%#%%@@@@@@@-      .:</tspan><tspan x="58" y="318">  :     ..==-...:-=++*#%@@@@@@*:    ..:-</tspan><tspan x="58" y="328">  :  ...:::  ..       ....::-:.......::-</tspan><tspan x="58" y="338">  -.  ........::::......        ...:::-</tspan><tspan x="58" y="348">   :  ...::::::::----:::::::::.....::-=</tspan><tspan x="58" y="358">    :..:::--------==++++==----::::::-=</tspan><tspan x="58" y="368">     -==+##**####%%%@@@@@@@%%%%%##*=</tspan><tspan x="58" y="378">         @@@@@@@@@@@@@@@@@@@@@@@@@@</tspan><tspan x="58" y="388">         #%@@@@@@@@@@@@@@@@@@@@@@@@%</tspan><tspan x="58" y="398">        +#%@@@@@@@@@@@@@@@@@@@@@@@@@</tspan><tspan x="58" y="408">        *#%%@@@@@@@@@@@@@@@@@@@@@@@@</tspan><tspan x="58" y="418">       ###%%%@@@@@@@@@@@@@@@@@@@@@@@%</tspan><tspan x="58" y="428">       ###%%@@@@@%%@@@@@@@@@@@@@@@@@@</tspan>
+    <tspan x="58" y="112">             --+++++=====+===</tspan><tspan x="58" y="122">           +######%#***********+++</tspan><tspan x="58" y="132">           +@@@@@@@##%%#%%@@@@%%##**+</tspan><tspan x="58" y="142">       +=+*%@@@@@@%####%%%%%%%%%%%%%%#</tspan><tspan x="58" y="152">     +++*%@@@@@@@%%@%%%########%@@@@@@%*</tspan><tspan x="58" y="162">    +++**#%@@@@@@@@@@@%%%@%%@%%%@@@@@@@%</tspan><tspan x="58" y="172">    +*##***#%@@%*#%@@@@@@@@@@@@@@@@@@@@%</tspan><tspan x="58" y="182">    *%%%%####*=-::-=++*#####%@@@@@@@@@@#</tspan><tspan x="58" y="192">    +@@@@@%*+-:..  ...::::--=+**++*%@@@@#</tspan><tspan x="58" y="202">     %@@@@*=::.             ...:::=#@@@@#</tspan><tspan x="58" y="212">     *%@@@*:........     :-=++**+=-*@@@%</tspan><tspan x="58" y="222">      *%@@=:+**%%%@%+=--+@@@@@@@@%+:#@@*</tspan><tspan x="58" y="232">       *%%.:+*%%@@%%*:..=#%#####*+-:=%#*</tspan><tspan x="58" y="242">       -=*. .:::--:.      ..:::.   .:*==-</tspan><tspan x="58" y="252">       . =:       ...  .:::-.     .:-*+::</tspan><tspan x="58" y="262">        .--     .-:-*#*#@@#===:.:--:-*+*</tspan><tspan x="58" y="272">        *%+.:-.:*##**##*#%%#@@#--+=-+#%#</tspan><tspan x="58" y="282">         %+-:-.-%%+:....:::-=*#--==+*=</tspan><tspan x="58" y="292">           ++==-+=.:-+*###+-:-+**#%@#</tspan><tspan x="58" y="302">            ##*+*+-:-=++*+=--+%@@@@%</tspan><tspan x="58" y="312">             +%@@#++++++***##%@@@@*-</tspan><tspan x="58" y="322">            #:-#@@@@@@@@@@@@@@@@@*--</tspan><tspan x="58" y="332">          +#@*.:=*%@@@@@@@@@@@@%*+-*@@%*</tspan><tspan x="58" y="342">         *#%@* .::-=+##%@@@@@%%*+=--*@@@%*</tspan><tspan x="58" y="352">  ##*##%##%%@#.....:-=+*%%%%#*++=--::#@@@%###*</tspan><tspan x="58" y="362">#%@%%%%@%%%%@@=   ..:--=++**+==----:=@@@@@@@@%%%</tspan><tspan x="58" y="372">%@@%%@@@@%%%%@%-....::-==+++==------#@@@@@@@@@@@</tspan>
   </text>
 
   <text x="448" y="126" class="mono cmd">$ whoami</text>
@@ -56,19 +56,19 @@
 
   
       <rect x="448" y="258" width="104" height="34" rx="8" fill="#111a20" stroke="#23313b"/>
-      <text x="464" y="280" class="mono tag">repos 21</text>
+      <text x="464" y="280" class="mono tag">repos --</text>
     
   
       <rect x="564" y="258" width="108" height="34" rx="8" fill="#111a20" stroke="#23313b"/>
-      <text x="580" y="280" class="mono tag">stars 1</text>
+      <text x="580" y="280" class="mono tag">stars --</text>
     
   
       <rect x="684" y="258" width="136" height="34" rx="8" fill="#111a20" stroke="#23313b"/>
-      <text x="700" y="280" class="mono tag">followers 4</text>
+      <text x="700" y="280" class="mono tag">followers --</text>
     
   
       <rect x="832" y="258" width="104" height="34" rx="8" fill="#111a20" stroke="#23313b"/>
-      <text x="848" y="280" class="mono tag">top HTML</text>
+      <text x="848" y="280" class="mono tag">top AI</text>
     
 
   <text x="448" y="450" class="mono prompt">yudhveer@github</text>

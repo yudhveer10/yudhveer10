@@ -22,7 +22,7 @@ SVG_PATH = ASSETS / "terminal.svg"
 
 USERNAME = "yudhveer10"
 
-ASCII_WIDTH = 42
+ASCII_WIDTH = 48
 ASCII_RAMP = " .:-=+*#%@"
 SVG_WIDTH = 1100
 SVG_HEIGHT = 500
@@ -104,20 +104,48 @@ def crop_to_subject(image: Image.Image) -> Image.Image:
     return image.crop(box)
 
 
+def crop_to_ascii_portrait(image: Image.Image) -> Image.Image:
+    """Use a tighter head-and-shoulders crop so the ASCII portrait is readable."""
+    alpha = image.getchannel("A")
+    bbox = alpha.point(lambda value: 255 if value > 16 else 0).getbbox()
+    if not bbox:
+        return image
+
+    left, top, right, bottom = bbox
+    subject_width = right - left
+    subject_height = bottom - top
+    center_x = (left + right) // 2
+
+    crop_width = int(subject_width * 0.52)
+    crop_height = int(subject_height * 0.34)
+    crop_left = center_x - crop_width // 2
+    crop_right = center_x + crop_width // 2
+    crop_bottom = top + crop_height
+
+    box = (
+        max(0, crop_left),
+        max(0, top - int(subject_height * 0.015)),
+        min(image.size[0], crop_right),
+        min(image.size[1], crop_bottom),
+    )
+    return image.crop(box)
+
+
 def enhance_for_ascii(image: Image.Image) -> tuple[Image.Image, Image.Image]:
-    subject = crop_to_subject(image)
+    subject = crop_to_ascii_portrait(crop_to_subject(image))
     alpha = subject.getchannel("A")
 
     gray = subject.convert("L")
     gray = ImageOps.equalize(gray)
     gray = ImageOps.autocontrast(gray, cutoff=1)
-    gray = ImageEnhance.Contrast(gray).enhance(1.45)
-    gray = ImageEnhance.Sharpness(gray).enhance(1.8)
+    gray = ImageEnhance.Contrast(gray).enhance(1.55)
+    gray = ImageEnhance.Sharpness(gray).enhance(2.0)
     gray = gray.filter(ImageFilter.MedianFilter(3))
 
     edges = gray.filter(ImageFilter.FIND_EDGES)
     edges = ImageOps.autocontrast(edges)
-    gray = ImageChops.multiply(gray, ImageOps.invert(edges).point(lambda value: max(value, 64)))
+    edge_mask = ImageOps.invert(edges).point(lambda value: max(value, 86))
+    gray = ImageChops.multiply(gray, edge_mask)
     gray.putalpha(alpha)
     return gray.convert("RGBA"), alpha
 
@@ -262,7 +290,7 @@ def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str]) -> str:
     ascii_lines = ascii_art.splitlines()
     ascii_spans = []
     for index, line in enumerate(ascii_lines[:32]):
-        y = 118 + index * 10
+        y = 112 + index * 10
         ascii_spans.append(f'<tspan x="58" y="{y}">{esc(line)}</tspan>')
 
     stack_lines = [
@@ -304,7 +332,7 @@ def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str]) -> str:
       .muted {{ fill: #7d8590; }}
       .cmd {{ fill: #00ff88; font-size: 17px; font-weight: 800; }}
       .tag {{ fill: #d7fbe8; font-size: 14px; font-weight: 700; }}
-      .ascii {{ fill: #b7ffd0; font-size: 9.4px; letter-spacing: 0; filter: url(#softGlow); }}
+      .ascii {{ fill: #b7ffd0; font-size: 9px; letter-spacing: 0; filter: url(#softGlow); }}
       .prompt {{ fill: #00ff88; font-size: 15px; font-weight: 800; }}
       .cursor {{ fill: #00ff88; }}
     </style>
