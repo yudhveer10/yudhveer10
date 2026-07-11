@@ -44,7 +44,6 @@ class Profile:
     databases: tuple[str, ...] = ("MongoDB", "PostgreSQL", "MySQL")
     ai_stack: tuple[str, ...] = ("LangGraph", "Gemini", "OpenAI", "TensorFlow", "FAISS", "Scikit-Learn")
     projects: tuple[str, ...] = (
-        "HireAIVV",
         "AI Content Repurposing Platform",
         "LangGraph Workflows",
         "AI Agents",
@@ -300,10 +299,10 @@ def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str]) -> str:
     ]
 
     project_lines = [
-        "HireAIVV",
         "AI Agents",
         "LangGraph Workflows",
         "AI Content Repurposing",
+        "Panwar Alpha",
     ]
 
     top_language = stats["top_language"] if stats["top_language"] != "AI / Full Stack" else "AI"
@@ -444,7 +443,6 @@ I build AI-first products with a practical engineering mindset: fast backends, c
 
 | Project | What it is |
 | --- | --- |
-| HireAIVV | AI-powered recruitment and hiring intelligence platform |
 | AI Content Repurposing Platform | Converts long-form content into multi-platform assets |
 | LangGraph Workflows | Agentic workflows with stateful AI orchestration |
 | AI Agents | Task-focused autonomous systems and tool-using assistants |

@@ -60,7 +60,6 @@ I build AI-first products with a practical engineering mindset: fast backends, c
 
 | Project | What it is |
 | --- | --- |
-| HireAIVV | AI-powered recruitment and hiring intelligence platform |
 | AI Content Repurposing Platform | Converts long-form content into multi-platform assets |
 | LangGraph Workflows | Agentic workflows with stateful AI orchestration |
 | AI Agents | Task-focused autonomous systems and tool-using assistants |
