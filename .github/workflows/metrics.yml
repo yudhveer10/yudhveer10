@@ -1,1 +1,39 @@
+name: Generate Terminal Profile
 
+on:
+  schedule:
+    - cron: "17 */12 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "assets/YudhveerP.jpg"
+      - "scripts/generate_terminal.py"
+      - ".github/workflows/metrics.yml"
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pillow numpy
+
+      - name: Generate terminal profile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/generate_terminal.py
+
+      - name: Commit generated assets
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: regenerate terminal profile"
+          file_pattern: README.md PROJECT_CONTEXT.md assets/ascii.txt assets/terminal.svg
