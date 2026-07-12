@@ -7,7 +7,9 @@ import statistics
 import textwrap
 import urllib.error
 import urllib.request
+from base64 import b64encode
 from dataclasses import dataclass
+from io import BytesIO
 from pathlib import Path
 
 import numpy as np
@@ -20,6 +22,7 @@ IMAGE_PATH = ASSETS / "YudhveerP.jpg"
 ASCII_PATH = ASSETS / "ascii.txt"
 SVG_PATH = ASSETS / "terminal.svg"
 DASHBOARD_PATH = ASSETS / "github-dashboard.svg"
+PORTRAIT_PATH = ASSETS / "terminal-portrait.png"
 
 USERNAME = "yudhveer10"
 
@@ -127,8 +130,8 @@ def crop_to_ascii_portrait(image: Image.Image) -> Image.Image:
     subject_height = bottom - top
     center_x = (left + right) // 2
 
-    crop_width = int(subject_width * 0.52)
-    crop_height = int(subject_height * 0.34)
+    crop_width = int(subject_width * 0.58)
+    crop_height = int(subject_height * 0.46)
     crop_left = center_x - crop_width // 2
     crop_right = center_x + crop_width // 2
     crop_bottom = top + crop_height
@@ -140,6 +143,42 @@ def crop_to_ascii_portrait(image: Image.Image) -> Image.Image:
         min(image.size[1], crop_bottom),
     )
     return image.crop(box)
+
+
+def make_terminal_portrait(image: Image.Image) -> Image.Image:
+    subject = crop_to_ascii_portrait(crop_to_subject(image))
+    subject = ImageOps.contain(subject, (340, 320), Image.Resampling.LANCZOS)
+
+    canvas = Image.new("RGBA", (340, 320), (7, 16, 12, 255))
+    x = (canvas.width - subject.width) // 2
+    y = (canvas.height - subject.height) // 2
+    canvas.alpha_composite(subject, (x, y))
+
+    glow = Image.new("RGBA", canvas.size, (0, 255, 136, 0))
+    alpha = subject.getchannel("A").filter(ImageFilter.GaussianBlur(10))
+    glow_layer = Image.new("RGBA", subject.size, (0, 255, 136, 40))
+    glow_layer.putalpha(alpha.point(lambda value: min(75, value // 3)))
+    glow.alpha_composite(glow_layer, (x, y))
+    canvas = Image.alpha_composite(glow, canvas)
+
+    rounded = Image.new("L", canvas.size, 0)
+    mask = Image.new("L", canvas.size, 255)
+    rounded.paste(mask, (0, 0))
+    canvas.putalpha(rounded)
+    return canvas
+
+
+def image_to_data_uri(image: Image.Image) -> str:
+    buffer = BytesIO()
+    image.save(buffer, format="PNG", optimize=True)
+    encoded = b64encode(buffer.getvalue()).decode("ascii")
+    return f"data:image/png;base64,{encoded}"
+
+
+def image_to_png_bytes(image: Image.Image) -> bytes:
+    buffer = BytesIO()
+    image.save(buffer, format="PNG", optimize=True)
+    return buffer.getvalue()
 
 
 def enhance_for_ascii(image: Image.Image) -> tuple[Image.Image, Image.Image]:
@@ -297,12 +336,17 @@ def stat_value(value: str) -> str:
     return "--" if value == "dynamic" else value
 
 
-def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str]) -> str:
-    ascii_lines = ascii_art.splitlines()
+def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str], portrait_uri: str) -> str:
+    ascii_panel_x = 46
+    ascii_panel_y = 96
+    ascii_panel_height = 344
+    ascii_line_height = 10
+    ascii_lines = ascii_art.splitlines()[:32]
+    ascii_start_y = int(ascii_panel_y + (ascii_panel_height - ((len(ascii_lines) - 1) * ascii_line_height)) / 2)
     ascii_spans = []
-    for index, line in enumerate(ascii_lines[:32]):
-        y = 112 + index * 10
-        ascii_spans.append(f'<tspan x="58" y="{y}">{esc(line)}</tspan>')
+    for index, line in enumerate(ascii_lines):
+        y = ascii_start_y + index * ascii_line_height
+        ascii_spans.append(f'<tspan x="68" y="{y}">{esc(line)}</tspan>')
 
     stack_lines = [
         "agentic ai  llm orchestration  gemini 2.5",
@@ -359,10 +403,13 @@ def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str]) -> str:
   <circle cx="108" cy="51" r="8" fill="#28c840"/>
   <text x="550" y="57" text-anchor="middle" class="mono muted" font-size="14">yudhveer10 / README.md</text>
 
-  <rect x="46" y="96" width="360" height="344" rx="12" fill="#07100c" stroke="#1d2b24"/>
-  <text class="mono ascii">
-    {''.join(ascii_spans)}
-  </text>
+  <clipPath id="portraitClip">
+    <rect x="58" y="108" width="336" height="320" rx="10"/>
+  </clipPath>
+  <rect x="{ascii_panel_x}" y="{ascii_panel_y}" width="360" height="{ascii_panel_height}" rx="12" fill="#07100c" stroke="#1d2b24"/>
+  <image x="58" y="108" width="336" height="320" href="{portrait_uri}" clip-path="url(#portraitClip)" preserveAspectRatio="xMidYMid meet"/>
+  <rect x="58" y="108" width="336" height="320" rx="10" fill="none" stroke="#00ff88" stroke-opacity="0.25"/>
+  <text x="70" y="416" class="mono muted" font-size="12">generated from assets/YudhveerP.jpg</text>
 
   <text x="448" y="126" class="mono cmd">$ whoami</text>
   <text x="448" y="166" class="mono title">{esc(profile.name)}</text>
@@ -589,7 +636,7 @@ This repository generates a terminal-style GitHub profile from `assets/YudhveerP
 
 ## Source Of Truth
 
-Do not manually edit `assets/terminal.svg` or `assets/ascii.txt`.
+Do not manually edit `assets/terminal.svg`, `assets/terminal-portrait.png`, `assets/github-dashboard.svg`, or `assets/ascii.txt`.
 
 Regenerate generated assets with:
 
@@ -622,6 +669,7 @@ python scripts/generate_terminal.py
 
 - `assets/ascii.txt`
 - `assets/terminal.svg`
+- `assets/terminal-portrait.png`
 - `assets/github-dashboard.svg`
 - `README.md`
 
@@ -636,14 +684,17 @@ def main() -> None:
     photo = load_photo(IMAGE_PATH)
     ascii_art = image_to_ascii(photo)
     ASCII_PATH.write_text(ascii_art, encoding="utf-8")
+    portrait = make_terminal_portrait(photo)
+    PORTRAIT_PATH.write_bytes(image_to_png_bytes(portrait))
 
     stats = fetch_github_stats(profile.username)
-    SVG_PATH.write_text(build_svg(ascii_art, profile, stats), encoding="utf-8")
+    SVG_PATH.write_text(build_svg(ascii_art, profile, stats, image_to_data_uri(portrait)), encoding="utf-8")
     DASHBOARD_PATH.write_text(build_dashboard_svg(profile, stats), encoding="utf-8")
     write_readme(profile)
     write_project_context()
 
     print(f"Generated {ASCII_PATH.relative_to(ROOT)}")
+    print(f"Generated {PORTRAIT_PATH.relative_to(ROOT)}")
     print(f"Generated {SVG_PATH.relative_to(ROOT)}")
     print(f"Generated {DASHBOARD_PATH.relative_to(ROOT)}")
     print("Updated README.md")
