@@ -2,7 +2,7 @@
 
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=260&color=0:020617,50:0d1117,100:00ff88&text=Yudhveer%20Singh%20Panwar&fontSize=48&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=AI%20Engineer%20%7C%20Full%20Stack%20Builder%20%7C%20Agentic%20AI&descAlignY=58&descSize=18" alt="Yudhveer Singh Panwar">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=24&duration=2400&pause=700&color=00FF88&center=true&vCenter=true&width=900&lines=AI+Engineer+at+TechAIVV;Building+AI+Agents+and+Automation;Python+%7C+FastAPI+%7C+Next.js+%7C+LangGraph;Turning+ideas+into+production+AI+systems)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=24&duration=2400&pause=700&color=00FF88&center=true&vCenter=true&width=900&lines=Full+Stack+AI+Developer;Agentic+AI+%7C+Generative+Workflows;Next.js+%7C+Python+%7C+Gemini+2.5;Real-time+AI+Inference+and+Automation)](https://git.io/typing-svg)
 
 </div>
 
@@ -22,13 +22,13 @@
 Name      : Yudhveer Singh Panwar
 Username  : yudhveer10
 Role      : AI Engineer
-Company   : TechAIVV
+Company   : TechAivv Technologies
 Location  : Delhi, India
-Focus     : AI agents, LLM apps, automation, full-stack AI products
+Focus     : Agentic AI, LLM orchestration, real-time inference, AI SaaS
 Email     : yudhveerp10@gmail.com
 ```
 
-I build AI-first products with a practical engineering mindset: fast backends, clean frontends, agentic workflows, and systems that move from prototype to production.
+I build AI-powered products across the full stack, connecting machine learning systems with fast, user-facing applications. My work spans agentic workflow generation, scalable AI SaaS platforms, backend automation, OCR pipelines, and deep learning diagnostics.
 
 ## Tech Arsenal
 
@@ -41,18 +41,24 @@ I build AI-first products with a practical engineering mindset: fast backends, c
 <img src="https://skillicons.dev/icons?i=react,nextjs,tailwind,html,css" alt="Frontend">
 
 ### Backend
-<img src="https://skillicons.dev/icons?i=fastapi,nodejs,express" alt="Backend">
+<img src="https://skillicons.dev/icons?i=nodejs,express,python" alt="Backend">
 
 ### Databases
-<img src="https://skillicons.dev/icons?i=mongodb,postgres,mysql" alt="Databases">
+<img src="https://skillicons.dev/icons?i=mongodb,mysql,redis,firebase" alt="Databases">
 
-### AI / ML
-<img src="https://img.shields.io/badge/LangGraph-111827?style=for-the-badge&logoColor=white" alt="LangGraph">
+### AI / ML / Automation
+<img src="https://img.shields.io/badge/Agentic_AI-111827?style=for-the-badge&logoColor=white" alt="Agentic AI">
+<img src="https://img.shields.io/badge/LLM_Orchestration-00ff88?style=for-the-badge&logoColor=black" alt="LLM Orchestration">
+<img src="https://img.shields.io/badge/Generative_Workflows-111827?style=for-the-badge&logoColor=white" alt="Generative Workflows">
 <img src="https://img.shields.io/badge/Gemini-4285F4?style=for-the-badge&logo=googlegemini&logoColor=white" alt="Gemini">
-<img src="https://img.shields.io/badge/OpenAI-111827?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI">
 <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow">
-<img src="https://img.shields.io/badge/FAISS-00ff88?style=for-the-badge&logoColor=black" alt="FAISS">
-<img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="Scikit-Learn">
+<img src="https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=keras&logoColor=white" alt="Keras">
+<img src="https://img.shields.io/badge/CNNs-111827?style=for-the-badge&logoColor=white" alt="CNNs">
+<img src="https://img.shields.io/badge/OCR_Automation-00ff88?style=for-the-badge&logoColor=black" alt="OCR Automation">
+
+### Cloud / DevOps
+<img src="https://skillicons.dev/icons?i=aws,docker,kubernetes" alt="Cloud and DevOps">
+<img src="https://img.shields.io/badge/CI%2FCD-111827?style=for-the-badge&logo=githubactions&logoColor=white" alt="CI/CD">
 
 </div>
 
@@ -60,10 +66,10 @@ I build AI-first products with a practical engineering mindset: fast backends, c
 
 | Project | What it is |
 | --- | --- |
-| AI Content Repurposing Platform | Converts long-form content into multi-platform assets |
-| LangGraph Workflows | Agentic workflows with stateful AI orchestration |
-| AI Agents | Task-focused autonomous systems and tool-using assistants |
-| Panwar Alpha | TradingView indicator and market analysis experiments |
+| Flo.AI | Agentic AI framework using Gemini 2.5 for 15+ step workflow automation |
+| The Crop Doctor | CNN-based crop disease diagnostics trained on 5,000+ annotated images |
+| AI Automation Pipelines | Python, Pandas, NumPy, OCR, scheduling, and API integration workflows |
+| Real-time AI SaaS | Full-stack AI platform work with responsive UI and low-latency inference |
 
 ## GitHub Analytics
 
@@ -93,10 +99,11 @@ I build AI-first products with a practical engineering mindset: fast backends, c
 
 | Area | Signal |
 | --- | --- |
-| AI Engineering | Agentic workflows, LLM apps, automation systems |
-| Backend | FastAPI, Node.js, Express, APIs and orchestration |
-| Frontend | Next.js, React, Tailwind CSS |
-| Data | PostgreSQL, MongoDB, MySQL, FAISS |
+| Agentic AI | Gemini 2.5, LLM orchestration, generative workflow automation |
+| Full Stack AI | Next.js, React, Python, Express.js, real-time AI inference |
+| Automation | Pandas, NumPy, OCR, backend scheduling, API integrations |
+| Deep Learning | TensorFlow/Keras, CNNs, image classification, web integration |
+| Cloud & Delivery | AWS, Docker, Kubernetes, CI/CD |
 
 ## Connect
 

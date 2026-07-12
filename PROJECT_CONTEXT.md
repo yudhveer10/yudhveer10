@@ -27,7 +27,7 @@ python scripts/generate_terminal.py
 - Name: Yudhveer Singh Panwar
 - Username: yudhveer10
 - Role: AI Engineer
-- Company: TechAIVV
+- Company: TechAivv Technologies
 - Location: Delhi, India
 - Email: yudhveerp10@gmail.com
 - LinkedIn: https://linkedin.com/in/yudhveer-singh-panwar-504339265/

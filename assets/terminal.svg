@@ -45,14 +45,14 @@
 
   <text x="448" y="126" class="mono cmd">$ whoami</text>
   <text x="448" y="166" class="mono title">Yudhveer Singh Panwar</text>
-  <text x="450" y="195" class="mono subtitle">AI Engineer at TechAIVV | Delhi, India</text>
+  <text x="450" y="195" class="mono subtitle">AI Engineer at TechAivv Technologies | Delhi, India</text>
   <text x="450" y="228" class="mono body">contact : yudhveerp10@gmail.com</text>
 
   <text x="448" y="330" class="mono cmd">$ stack</text>
-  <text x="450" y="364" class="mono body"><tspan x="450" dy="0">python  c++  typescript  sql</tspan><tspan x="450" dy="22">next.js  react  tailwind  fastapi</tspan><tspan x="450" dy="22">langgraph  openai  gemini  faiss</tspan></text>
+  <text x="450" y="364" class="mono body"><tspan x="450" dy="0">agentic ai  llm orchestration  gemini 2.5</tspan><tspan x="450" dy="22">next.js  react  python  express.js</tspan><tspan x="450" dy="22">tensorflow/keras  cnns  ocr  docker</tspan></text>
 
   <text x="754" y="330" class="mono cmd">$ projects</text>
-  <text x="756" y="364" class="mono body"><tspan x="756" dy="0">AI Agents</tspan><tspan x="756" dy="22">LangGraph Workflows</tspan><tspan x="756" dy="22">AI Content Repurposing</tspan><tspan x="756" dy="22">Panwar Alpha</tspan></text>
+  <text x="756" y="364" class="mono body"><tspan x="756" dy="0">Flo.AI</tspan><tspan x="756" dy="22">The Crop Doctor</tspan><tspan x="756" dy="22">AI Agents</tspan><tspan x="756" dy="22">Automation Pipelines</tspan></text>
 
   
       <rect x="448" y="258" width="104" height="34" rx="8" fill="#111a20" stroke="#23313b"/>
@@ -75,7 +75,7 @@
   <text x="578" y="450" class="mono body">:</text>
   <text x="590" y="450" class="mono" fill="#58a6ff" font-size="15">~/ai-lab</text>
   <text x="666" y="450" class="mono prompt">$</text>
-  <text x="688" y="450" class="mono body">building useful AI products</text>
+  <text x="688" y="450" class="mono body">building agentic AI systems</text>
   <rect x="928" y="436" width="10" height="20" class="cursor">
     <animate attributeName="opacity" values="1;1;0;0;1" dur="1.2s" repeatCount="indefinite"/>
   </rect>
