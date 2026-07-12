@@ -4,7 +4,7 @@ This repository generates a terminal-style GitHub profile from `assets/YudhveerP
 
 ## Source Of Truth
 
-Do not manually edit `assets/terminal.svg`, `assets/terminal-portrait.png`, `assets/github-dashboard.svg`, or `assets/ascii.txt`.
+Do not manually edit `assets/terminal.svg`, `assets/animated-avatar.png`, `assets/github-dashboard.svg`, or `assets/ascii.txt`.
 
 Regenerate generated assets with:
 
@@ -37,7 +37,7 @@ python scripts/generate_terminal.py
 
 - `assets/ascii.txt`
 - `assets/terminal.svg`
-- `assets/terminal-portrait.png`
+- `assets/animated-avatar.png`
 - `assets/github-dashboard.svg`
 - `README.md`
 

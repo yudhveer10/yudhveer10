@@ -19,10 +19,11 @@ from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 IMAGE_PATH = ASSETS / "YudhveerP.jpg"
+AVATAR_SOURCE_PATH = ASSETS / "avatar-source.png"
 ASCII_PATH = ASSETS / "ascii.txt"
 SVG_PATH = ASSETS / "terminal.svg"
 DASHBOARD_PATH = ASSETS / "github-dashboard.svg"
-PORTRAIT_PATH = ASSETS / "terminal-portrait.png"
+PORTRAIT_PATH = ASSETS / "animated-avatar.png"
 
 USERNAME = "yudhveer10"
 
@@ -145,27 +146,81 @@ def crop_to_ascii_portrait(image: Image.Image) -> Image.Image:
     return image.crop(box)
 
 
+def load_avatar_source() -> Image.Image:
+    if AVATAR_SOURCE_PATH.exists():
+        return Image.open(AVATAR_SOURCE_PATH).convert("RGBA")
+    return load_photo(IMAGE_PATH)
+
+
+def remove_flat_background(image: Image.Image) -> Image.Image:
+    rgb = image.convert("RGB")
+    arr = np.asarray(rgb).astype(np.int16)
+    corners = np.array(
+        [
+            arr[0, 0],
+            arr[0, -1],
+            arr[-1, 0],
+            arr[-1, -1],
+        ]
+    )
+    key = np.median(corners, axis=0)
+    distance = np.sqrt(((arr - key) ** 2).sum(axis=2))
+    alpha = np.where(distance < 55, 0, 255).astype(np.uint8)
+    alpha_img = Image.fromarray(alpha, "L")
+    alpha_img = alpha_img.filter(ImageFilter.MedianFilter(5))
+    alpha_img = alpha_img.filter(ImageFilter.GaussianBlur(0.8))
+
+    out = image.copy()
+    out.putalpha(alpha_img)
+    return crop_to_subject(out)
+
+
+def stylize_avatar(subject: Image.Image) -> Image.Image:
+    alpha = subject.getchannel("A")
+    rgb = subject.convert("RGB")
+    smooth = rgb.filter(ImageFilter.SMOOTH_MORE).filter(ImageFilter.SMOOTH_MORE)
+    smooth = ImageEnhance.Color(smooth).enhance(1.15)
+    smooth = ImageEnhance.Contrast(smooth).enhance(1.12)
+    poster = ImageOps.posterize(smooth, 5).convert("RGBA")
+
+    edges = smooth.convert("L").filter(ImageFilter.FIND_EDGES)
+    edges = ImageOps.autocontrast(edges).point(lambda value: 150 if value > 42 else 0)
+    edge_layer = Image.new("RGBA", subject.size, (5, 12, 18, 0))
+    edge_layer.putalpha(edges)
+
+    poster.putalpha(alpha)
+    avatar = Image.alpha_composite(poster, edge_layer)
+    avatar.putalpha(alpha)
+    return avatar
+
+
 def make_terminal_portrait(image: Image.Image) -> Image.Image:
-    subject = crop_to_ascii_portrait(crop_to_subject(image))
-    subject = ImageOps.contain(subject, (340, 320), Image.Resampling.LANCZOS)
+    subject = remove_flat_background(image)
+    subject = ImageOps.contain(subject, (300, 300), Image.Resampling.LANCZOS)
+    subject = stylize_avatar(subject)
 
     canvas = Image.new("RGBA", (340, 320), (7, 16, 12, 255))
+    for radius, opacity in ((120, 35), (70, 45), (35, 55)):
+        glow = Image.new("RGBA", canvas.size, (0, 255, 136, 0))
+        alpha = Image.new("L", subject.size, 0)
+        alpha.paste(subject.getchannel("A"))
+        alpha = alpha.filter(ImageFilter.GaussianBlur(radius / 16))
+        glow_subject = Image.new("RGBA", subject.size, (0, 255, 136, opacity))
+        glow_subject.putalpha(alpha.point(lambda value: min(opacity, value // 3)))
+        glow.alpha_composite(glow_subject, ((canvas.width - subject.width) // 2, (canvas.height - subject.height) // 2))
+        canvas = Image.alpha_composite(canvas, glow)
+
     x = (canvas.width - subject.width) // 2
-    y = (canvas.height - subject.height) // 2
+    y = (canvas.height - subject.height) // 2 + 4
     canvas.alpha_composite(subject, (x, y))
 
-    glow = Image.new("RGBA", canvas.size, (0, 255, 136, 0))
-    alpha = subject.getchannel("A").filter(ImageFilter.GaussianBlur(10))
-    glow_layer = Image.new("RGBA", subject.size, (0, 255, 136, 40))
-    glow_layer.putalpha(alpha.point(lambda value: min(75, value // 3)))
-    glow.alpha_composite(glow_layer, (x, y))
-    canvas = Image.alpha_composite(glow, canvas)
-
-    rounded = Image.new("L", canvas.size, 0)
-    mask = Image.new("L", canvas.size, 255)
-    rounded.paste(mask, (0, 0))
-    canvas.putalpha(rounded)
-    return canvas
+    vignette_alpha = Image.new("L", canvas.size, 0)
+    vignette_alpha.paste(90, (0, 0, canvas.width, 18))
+    vignette_alpha.paste(70, (0, canvas.height - 22, canvas.width, canvas.height))
+    vignette_alpha = vignette_alpha.filter(ImageFilter.GaussianBlur(18))
+    vignette = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    vignette.putalpha(vignette_alpha)
+    return Image.alpha_composite(canvas, vignette)
 
 
 def image_to_data_uri(image: Image.Image) -> str:
@@ -409,7 +464,7 @@ def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str], portrait_
   <rect x="{ascii_panel_x}" y="{ascii_panel_y}" width="360" height="{ascii_panel_height}" rx="12" fill="#07100c" stroke="#1d2b24"/>
   <image x="58" y="108" width="336" height="320" href="{portrait_uri}" clip-path="url(#portraitClip)" preserveAspectRatio="xMidYMid meet"/>
   <rect x="58" y="108" width="336" height="320" rx="10" fill="none" stroke="#00ff88" stroke-opacity="0.25"/>
-  <text x="70" y="416" class="mono muted" font-size="12">generated from assets/YudhveerP.jpg</text>
+  <text x="70" y="416" class="mono muted" font-size="12">animated avatar from assets/avatar-source.png</text>
 
   <text x="448" y="126" class="mono cmd">$ whoami</text>
   <text x="448" y="166" class="mono title">{esc(profile.name)}</text>
@@ -636,7 +691,7 @@ This repository generates a terminal-style GitHub profile from `assets/YudhveerP
 
 ## Source Of Truth
 
-Do not manually edit `assets/terminal.svg`, `assets/terminal-portrait.png`, `assets/github-dashboard.svg`, or `assets/ascii.txt`.
+Do not manually edit `assets/terminal.svg`, `assets/animated-avatar.png`, `assets/github-dashboard.svg`, or `assets/ascii.txt`.
 
 Regenerate generated assets with:
 
@@ -669,7 +724,7 @@ python scripts/generate_terminal.py
 
 - `assets/ascii.txt`
 - `assets/terminal.svg`
-- `assets/terminal-portrait.png`
+- `assets/animated-avatar.png`
 - `assets/github-dashboard.svg`
 - `README.md`
 
@@ -684,7 +739,7 @@ def main() -> None:
     photo = load_photo(IMAGE_PATH)
     ascii_art = image_to_ascii(photo)
     ASCII_PATH.write_text(ascii_art, encoding="utf-8")
-    portrait = make_terminal_portrait(photo)
+    portrait = make_terminal_portrait(load_avatar_source())
     PORTRAIT_PATH.write_bytes(image_to_png_bytes(portrait))
 
     stats = fetch_github_stats(profile.username)
