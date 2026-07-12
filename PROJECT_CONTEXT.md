@@ -1,6 +1,6 @@
 # GitHub Profile Terminal Project
 
-This repository generates a terminal-style GitHub profile from `assets/YudhveerP.jpg`.
+This repository generates a terminal-style GitHub profile with an illustrated AI avatar and automated profile assets.
 
 ## Source Of Truth
 
@@ -14,13 +14,14 @@ python scripts/generate_terminal.py
 
 ## Pipeline
 
-1. Read `assets/YudhveerP.jpg`
+1. Read `assets/YudhveerP.jpg` for the generated ASCII text asset
 2. Remove plain background, or use `rembg` automatically if installed
 3. Crop subject
 4. Apply histogram equalization, contrast enhancement, sharpening, noise reduction, and edge emphasis
 5. Generate `assets/ascii.txt`
-6. Build `assets/terminal.svg`
-7. Update `README.md` with the full premium profile layout and generated terminal centerpiece
+6. Draw `assets/animated-avatar.png` as a fictional illustrated AI character
+7. Build `assets/terminal.svg`
+8. Update `README.md` with the full premium profile layout and generated terminal centerpiece
 
 ## Profile
 

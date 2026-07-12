@@ -13,7 +13,7 @@ from io import BytesIO
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
+from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageOps
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -146,81 +146,94 @@ def crop_to_ascii_portrait(image: Image.Image) -> Image.Image:
     return image.crop(box)
 
 
-def load_avatar_source() -> Image.Image:
-    if AVATAR_SOURCE_PATH.exists():
-        return Image.open(AVATAR_SOURCE_PATH).convert("RGBA")
-    return load_photo(IMAGE_PATH)
+def make_terminal_portrait() -> Image.Image:
+    """Draw a fictional illustrated avatar instead of reusing the real photo."""
+    scale = 3
+    canvas = Image.new("RGBA", (340 * scale, 320 * scale), (7, 16, 12, 255))
 
+    def box(values: tuple[int, int, int, int]) -> tuple[int, int, int, int]:
+        return tuple(value * scale for value in values)
 
-def remove_flat_background(image: Image.Image) -> Image.Image:
-    rgb = image.convert("RGB")
-    arr = np.asarray(rgb).astype(np.int16)
-    corners = np.array(
-        [
-            arr[0, 0],
-            arr[0, -1],
-            arr[-1, 0],
-            arr[-1, -1],
-        ]
-    )
-    key = np.median(corners, axis=0)
-    distance = np.sqrt(((arr - key) ** 2).sum(axis=2))
-    alpha = np.where(distance < 55, 0, 255).astype(np.uint8)
-    alpha_img = Image.fromarray(alpha, "L")
-    alpha_img = alpha_img.filter(ImageFilter.MedianFilter(5))
-    alpha_img = alpha_img.filter(ImageFilter.GaussianBlur(0.8))
+    def pts(values: list[tuple[int, int]]) -> list[tuple[int, int]]:
+        return [(x * scale, y * scale) for x, y in values]
 
-    out = image.copy()
-    out.putalpha(alpha_img)
-    return crop_to_subject(out)
-
-
-def stylize_avatar(subject: Image.Image) -> Image.Image:
-    alpha = subject.getchannel("A")
-    rgb = subject.convert("RGB")
-    smooth = rgb.filter(ImageFilter.SMOOTH_MORE).filter(ImageFilter.SMOOTH_MORE)
-    smooth = ImageEnhance.Color(smooth).enhance(1.15)
-    smooth = ImageEnhance.Contrast(smooth).enhance(1.12)
-    poster = ImageOps.posterize(smooth, 5).convert("RGBA")
-
-    edges = smooth.convert("L").filter(ImageFilter.FIND_EDGES)
-    edges = ImageOps.autocontrast(edges).point(lambda value: 150 if value > 42 else 0)
-    edge_layer = Image.new("RGBA", subject.size, (5, 12, 18, 0))
-    edge_layer.putalpha(edges)
-
-    poster.putalpha(alpha)
-    avatar = Image.alpha_composite(poster, edge_layer)
-    avatar.putalpha(alpha)
-    return avatar
-
-
-def make_terminal_portrait(image: Image.Image) -> Image.Image:
-    subject = remove_flat_background(image)
-    subject = ImageOps.contain(subject, (300, 300), Image.Resampling.LANCZOS)
-    subject = stylize_avatar(subject)
-
-    canvas = Image.new("RGBA", (340, 320), (7, 16, 12, 255))
-    for radius, opacity in ((120, 35), (70, 45), (35, 55)):
-        glow = Image.new("RGBA", canvas.size, (0, 255, 136, 0))
-        alpha = Image.new("L", subject.size, 0)
-        alpha.paste(subject.getchannel("A"))
-        alpha = alpha.filter(ImageFilter.GaussianBlur(radius / 16))
-        glow_subject = Image.new("RGBA", subject.size, (0, 255, 136, opacity))
-        glow_subject.putalpha(alpha.point(lambda value: min(opacity, value // 3)))
-        glow.alpha_composite(glow_subject, ((canvas.width - subject.width) // 2, (canvas.height - subject.height) // 2))
+    # Terminal panel glow and subtle scanlines.
+    for radius, alpha in ((120, 26), (72, 34), (34, 42)):
+        glow = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+        glow_draw = ImageDraw.Draw(glow, "RGBA")
+        glow_draw.ellipse(box((62, 34, 278, 292)), fill=(0, 255, 136, alpha))
+        glow = glow.filter(ImageFilter.GaussianBlur(radius * scale // 12))
         canvas = Image.alpha_composite(canvas, glow)
 
-    x = (canvas.width - subject.width) // 2
-    y = (canvas.height - subject.height) // 2 + 4
-    canvas.alpha_composite(subject, (x, y))
+    draw = ImageDraw.Draw(canvas, "RGBA")
 
-    vignette_alpha = Image.new("L", canvas.size, 0)
-    vignette_alpha.paste(90, (0, 0, canvas.width, 18))
-    vignette_alpha.paste(70, (0, canvas.height - 22, canvas.width, canvas.height))
-    vignette_alpha = vignette_alpha.filter(ImageFilter.GaussianBlur(18))
+    for y in range(20, 304, 16):
+        draw.line((28 * scale, y * scale, 312 * scale, y * scale), fill=(0, 255, 136, 12), width=1 * scale)
+    draw.rounded_rectangle(box((26, 24, 314, 296)), radius=18 * scale, outline=(0, 255, 136, 70), width=2 * scale)
+
+    # Body and shoulders: original animated AI engineer, not a photo trace.
+    draw.polygon(
+        pts([(78, 284), (108, 192), (136, 168), (204, 168), (232, 192), (262, 284)]),
+        fill=(15, 23, 42, 255),
+        outline=(41, 63, 83, 255),
+    )
+    draw.polygon(pts([(119, 185), (170, 260), (221, 185), (204, 174), (170, 214), (136, 174)]), fill=(7, 16, 12, 255))
+    draw.line(pts([(170, 214), (170, 286)]), fill=(0, 255, 136, 80), width=2 * scale)
+    draw.rounded_rectangle(box((92, 240, 248, 286)), radius=20 * scale, fill=(10, 18, 31, 255), outline=(0, 255, 136, 70), width=2 * scale)
+    draw.rectangle(box((118, 254, 222, 262)), fill=(0, 255, 136, 24))
+    draw.rectangle(box((142, 266, 198, 272)), fill=(88, 166, 255, 36))
+
+    # Neck and face.
+    skin = (198, 132, 95, 255)
+    skin_light = (229, 165, 122, 255)
+    shadow = (101, 53, 44, 110)
+    draw.rounded_rectangle(box((150, 151, 190, 190)), radius=12 * scale, fill=(166, 98, 76, 255))
+    draw.ellipse(box((102, 58, 238, 194)), fill=skin, outline=(255, 234, 206, 180), width=2 * scale)
+    draw.ellipse(box((122, 78, 220, 168)), fill=skin_light)
+    draw.pieslice(box((102, 112, 238, 212)), 0, 180, fill=shadow)
+
+    # Hair, eyebrows, eyes, beard, and smile in cartoon proportions.
+    hair = (18, 24, 32, 255)
+    hair_hi = (55, 65, 78, 220)
+    draw.pieslice(box((98, 38, 242, 134)), 178, 360, fill=hair)
+    draw.polygon(pts([(106, 90), (124, 48), (154, 40), (196, 42), (230, 68), (238, 104), (218, 92), (198, 76), (162, 70), (130, 82)]), fill=hair)
+    draw.arc(box((132, 50, 216, 100)), 190, 340, fill=hair_hi, width=3 * scale)
+    draw.line(pts([(126, 116), (152, 110)]), fill=(21, 27, 36, 255), width=4 * scale)
+    draw.line(pts([(188, 110), (214, 116)]), fill=(21, 27, 36, 255), width=4 * scale)
+    draw.ellipse(box((137, 124, 149, 136)), fill=(8, 13, 18, 255))
+    draw.ellipse(box((191, 124, 203, 136)), fill=(8, 13, 18, 255))
+    draw.ellipse(box((141, 126, 145, 130)), fill=(255, 255, 255, 210))
+    draw.ellipse(box((195, 126, 199, 130)), fill=(255, 255, 255, 210))
+    draw.line(pts([(170, 130), (164, 150), (177, 150)]), fill=(122, 68, 55, 180), width=2 * scale)
+    draw.pieslice(box((122, 130, 218, 202)), 0, 180, fill=(31, 31, 35, 210))
+    draw.polygon(pts([(124, 162), (146, 194), (194, 194), (216, 162), (198, 184), (142, 184)]), fill=(30, 30, 34, 230))
+    draw.arc(box((146, 150, 194, 176)), 18, 162, fill=(246, 238, 220, 230), width=3 * scale)
+
+    # Glasses and small circuit accents make it character-like and techy.
+    draw.rounded_rectangle(box((128, 116, 158, 143)), radius=9 * scale, outline=(0, 255, 136, 140), width=2 * scale)
+    draw.rounded_rectangle(box((182, 116, 212, 143)), radius=9 * scale, outline=(0, 255, 136, 140), width=2 * scale)
+    draw.line(pts([(158, 129), (182, 129)]), fill=(0, 255, 136, 120), width=2 * scale)
+    draw.line(pts([(230, 112), (258, 102), (276, 102)]), fill=(0, 255, 136, 120), width=2 * scale)
+    draw.ellipse(box((274, 98, 282, 106)), fill=(0, 255, 136, 220))
+    draw.line(pts([(110, 208), (78, 208), (60, 224)]), fill=(0, 255, 136, 100), width=2 * scale)
+    draw.ellipse(box((54, 218, 66, 230)), fill=(0, 255, 136, 190))
+
+    # Crisp cartoon outline.
+    outline = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    outline_draw = ImageDraw.Draw(outline, "RGBA")
+    outline_draw.ellipse(box((97, 54, 243, 198)), outline=(0, 255, 136, 120), width=3 * scale)
+    outline_draw.polygon(pts([(78, 284), (108, 192), (136, 168), (204, 168), (232, 192), (262, 284)]), outline=(0, 255, 136, 120))
+    canvas = Image.alpha_composite(canvas, outline.filter(ImageFilter.GaussianBlur(0.25 * scale)))
+
     vignette = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    vignette_alpha = Image.new("L", canvas.size, 0)
+    ImageDraw.Draw(vignette_alpha).rectangle(box((0, 0, 340, 24)), fill=90)
+    ImageDraw.Draw(vignette_alpha).rectangle(box((0, 288, 340, 320)), fill=85)
+    vignette_alpha = vignette_alpha.filter(ImageFilter.GaussianBlur(16 * scale))
     vignette.putalpha(vignette_alpha)
-    return Image.alpha_composite(canvas, vignette)
+    canvas = Image.alpha_composite(canvas, vignette)
+
+    return canvas.resize((340, 320), Image.Resampling.LANCZOS)
 
 
 def image_to_data_uri(image: Image.Image) -> str:
@@ -420,7 +433,7 @@ def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str], portrait_
 
     return f'''<svg width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">{esc(profile.name)} terminal profile</title>
-  <desc id="desc">Generated terminal-style GitHub profile with ASCII portrait and system information.</desc>
+  <desc id="desc">Generated terminal-style GitHub profile with an illustrated character avatar and system information.</desc>
   <defs>
     <linearGradient id="terminalBg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#080c10"/>
@@ -464,7 +477,7 @@ def build_svg(ascii_art: str, profile: Profile, stats: dict[str, str], portrait_
   <rect x="{ascii_panel_x}" y="{ascii_panel_y}" width="360" height="{ascii_panel_height}" rx="12" fill="#07100c" stroke="#1d2b24"/>
   <image x="58" y="108" width="336" height="320" href="{portrait_uri}" clip-path="url(#portraitClip)" preserveAspectRatio="xMidYMid meet"/>
   <rect x="58" y="108" width="336" height="320" rx="10" fill="none" stroke="#00ff88" stroke-opacity="0.25"/>
-  <text x="70" y="416" class="mono muted" font-size="12">animated avatar from assets/avatar-source.png</text>
+  <text x="70" y="416" class="mono muted" font-size="12">illustrated AI avatar generated by script</text>
 
   <text x="448" y="126" class="mono cmd">$ whoami</text>
   <text x="448" y="166" class="mono title">{esc(profile.name)}</text>
@@ -687,7 +700,7 @@ I build AI-powered products across the full stack, connecting machine learning s
 def write_project_context() -> None:
     content = f"""# GitHub Profile Terminal Project
 
-This repository generates a terminal-style GitHub profile from `assets/YudhveerP.jpg`.
+This repository generates a terminal-style GitHub profile with an illustrated AI avatar and automated profile assets.
 
 ## Source Of Truth
 
@@ -701,13 +714,14 @@ python scripts/generate_terminal.py
 
 ## Pipeline
 
-1. Read `assets/YudhveerP.jpg`
+1. Read `assets/YudhveerP.jpg` for the generated ASCII text asset
 2. Remove plain background, or use `rembg` automatically if installed
 3. Crop subject
 4. Apply histogram equalization, contrast enhancement, sharpening, noise reduction, and edge emphasis
 5. Generate `assets/ascii.txt`
-6. Build `assets/terminal.svg`
-7. Update `README.md` with the full premium profile layout and generated terminal centerpiece
+6. Draw `assets/animated-avatar.png` as a fictional illustrated AI character
+7. Build `assets/terminal.svg`
+8. Update `README.md` with the full premium profile layout and generated terminal centerpiece
 
 ## Profile
 
@@ -739,7 +753,7 @@ def main() -> None:
     photo = load_photo(IMAGE_PATH)
     ascii_art = image_to_ascii(photo)
     ASCII_PATH.write_text(ascii_art, encoding="utf-8")
-    portrait = make_terminal_portrait(load_avatar_source())
+    portrait = make_terminal_portrait()
     PORTRAIT_PATH.write_bytes(image_to_png_bytes(portrait))
 
     stats = fetch_github_stats(profile.username)
