@@ -59,7 +59,7 @@
 
   
       <rect x="448" y="258" width="104" height="34" rx="8" fill="#111a20" stroke="#23313b"/>
-      <text x="464" y="280" class="mono tag">repos 24</text>
+      <text x="464" y="280" class="mono tag">repos 23</text>
     
   
       <rect x="564" y="258" width="108" height="34" rx="8" fill="#111a20" stroke="#23313b"/>
@@ -71,7 +71,7 @@
     
   
       <rect x="832" y="258" width="104" height="34" rx="8" fill="#111a20" stroke="#23313b"/>
-      <text x="848" y="280" class="mono tag">top Python</text>
+      <text x="848" y="280" class="mono tag">top HTML</text>
     
 
   <text x="448" y="450" class="mono prompt">yudhveer@github</text>
